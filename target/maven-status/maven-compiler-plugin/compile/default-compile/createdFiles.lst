@@ -1,1 +1,13 @@
+config/IGerenciadorConexaoDB.class
+DAO/DAOImplementacao.class
+model/Usuario.class
+DAO/LoginDAO.class
+config/GerenciadorConexaoDB.class
+DAO/UsuarioDAO.class
+DAO/ProdutoDAO.class
+model/Login.class
 Servlet/FazerLogin.class
+DAO/AbstractDAO.class
+model/Produto.class
+constantesBD/ConstantesBancoDados.class
+assets/TradutorCase.class
