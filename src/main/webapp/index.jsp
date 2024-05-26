@@ -23,8 +23,10 @@
                 <br>
                 <label for="senha">Senha</label>
                 <input type="password" id="senha" name="senha" placeholder="Senha">
-
+                <br>
                 <input type="submit" name="form_login" value="Entrar">
+                <br>
+                <a href="cadastro.jsp">cadastrar</a>
 
             </form>
         </div>

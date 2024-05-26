@@ -18,17 +18,19 @@
         <form method="POST" action="CadastroUsuario" onsubmit="return validarCampos()">
             <label for="usuario">Usuario</label>
             <input type="text" id="usuario" name="usuario" placeholder="Nome de Utilizador" required>
-
+            <br>
             <label for="nome">Nome</label>
             <input type="text" id="nome" name="nome" placeholder="Nome" required>
-
+            <br>
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="exemplo@gmail.com" required>
-
+            <br>
             <label for="senha">Senha</label>
             <input type="password" id="senha" name="senha" placeholder="Senha" required>
-
+            <br>
             <input type="submit" name="form-cadastro" value="Cadastrar">
+            <br>
+            <a href="index.jsp">login</a>
         </form>
 
     </body>
