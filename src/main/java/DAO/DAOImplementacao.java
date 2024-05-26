@@ -26,8 +26,10 @@ public class DAOImplementacao<T extends Object, K> extends AbstractDAO<T, K> {
     }
 
     public String getNomeEntidade () {
+        
         String nomeEntidade = this.entidade.getClass().getSimpleName();
-        String ultimaLetra = "";
+        //String ultimaLetra = "";
+        /*
         if ( !nomeEntidade.isEmpty() ) {
             ultimaLetra = nomeEntidade.substring( nomeEntidade.length() - 1 );
         }
@@ -36,7 +38,8 @@ public class DAOImplementacao<T extends Object, K> extends AbstractDAO<T, K> {
             nomeEntidade = removerUltimasDuasLetras( nomeEntidade );
             return nomeEntidade + "oes";
         }
-        return nomeEntidade + "s";
+        */
+        return nomeEntidade;
     }
 
     public String removerUltimasDuasLetras ( String palavra ) {
@@ -116,17 +119,21 @@ public class DAOImplementacao<T extends Object, K> extends AbstractDAO<T, K> {
 
     @Override
     public void adicionar ( T entidade ) throws SQLException {
+        
         System.err.println( this.entidade.getClass().getSimpleName() );
         String[] camposTabela = mapearCamposTabela();
         String[] camposEntidade = obterCampos();
         Field[] campos = entidade.getClass().getDeclaredFields();
         String sqlQuery = transformarQueryInsert( camposTabela );
         PreparedStatement sentenca = this.conexao.prepareStatement( sqlQuery );
+        
         int i = 1;
         for ( Field campo : campos ) {
             campo.setAccessible( true );
+            
             try {
                 Object valor = campo.get( entidade );
+                
                 if ( valor != null ) {
                     if ( campo.getType() == String.class ) {
                         sentenca.setString( i, ( String ) valor );
@@ -153,6 +160,7 @@ public class DAOImplementacao<T extends Object, K> extends AbstractDAO<T, K> {
             }
             i++;
         }
+        
         int linhasAfectadas = sentenca.executeUpdate();
         System.out.println( "Linhas afectadas: " + linhasAfectadas );
     }
@@ -198,13 +206,16 @@ public class DAOImplementacao<T extends Object, K> extends AbstractDAO<T, K> {
 
     @Override
     public void actualizar ( K id, T entidade ) throws SQLException {
+        
         String idMapeado = pegarIdMapeado();
         String sqlQuery = "UPDATE " + this.getNomeEntidade() + " SET ";
         String[] camposTabela = mapearCamposTabela();
         String[] camposEntidade = obterCampos();
         Field[] fields = entidade.getClass().getDeclaredFields();
         int i = 0, j = 0;
+        
         for ( Field field : fields ) {
+            
             field.setAccessible( true );
             try {
                 Object valor = field.get( entidade );
@@ -222,13 +233,16 @@ public class DAOImplementacao<T extends Object, K> extends AbstractDAO<T, K> {
             }
             i++;
         }
+        
         if ( j == 1 ) {
             sqlQuery = sqlQuery.substring( 0, sqlQuery.length() - 1 );
         }
 
         sqlQuery += " WHERE " + idMapeado + " = " + id + ";";
         PreparedStatement sentenca = this.conexao.prepareStatement( sqlQuery );
+        
         for ( int contador = 0; contador < camposEntidade.length; contador++ ) {
+            
             fields[contador].setAccessible( true );
             try {
                 Object valor = fields[contador].get( entidade );
@@ -257,6 +271,7 @@ public class DAOImplementacao<T extends Object, K> extends AbstractDAO<T, K> {
                 throw new RuntimeException( e );
             }
         }
+        
         System.out.println( sqlQuery );
         //PreparedStatement sentenca = this.conexao.prepareStatement(sqlQuery);
         int rows = sentenca.executeUpdate();

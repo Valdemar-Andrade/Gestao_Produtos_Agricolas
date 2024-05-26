@@ -23,15 +23,21 @@ public class GerenciadorConexaoDB implements IGerenciadorConexaoDB {
 
     @Override
     public void abrirConexao () {
+        
         var url = "jdbc:postgresql://" + ConstantesBancoDados.HOST + ":" + ConstantesBancoDados.PORTA + "/"
                 + ConstantesBancoDados.NOME_BD;
 
         try {
+            Class.forName("org.postgresql.Driver");
             conexao = DriverManager.getConnection( url, ConstantesBancoDados.NOME_UTILIZADOR, ConstantesBancoDados.SENHA );
         }
         catch ( SQLException ex ) {
             ex.printStackTrace();
         }
+        catch ( ClassNotFoundException ex ) {
+            System.out.println( "Erro Driver nao encontrado" );
+        }
+        
     }
 
     @Override

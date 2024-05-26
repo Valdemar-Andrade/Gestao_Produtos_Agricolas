@@ -47,13 +47,18 @@ public class CadastroUsuario extends HttpServlet {
             UsuarioDAO usuarioDao = new UsuarioDAO();
             LoginDAO loginDao = new LoginDAO();
 
-            Usuario novoUsuario = new Usuario( 0, nome, email );
             List<Usuario> usuarios;
+            
+            int pk = 0;
 
             try {
-
-                usuarioDao.adicionar( novoUsuario );
                 usuarios = usuarioDao.listar();
+                
+                pk = usuarios.get( usuarios.size() - 1).getPkUsuario() + 1;
+                
+                Usuario novoUsuario = new Usuario( pk, nome, email );
+                usuarioDao.adicionar( novoUsuario );
+                
 
                 Login login = new Login( 0, usuario, senha, usuarios.get( usuarios.size() - 1 ).getPkUsuario() );
                 loginDao.adicionar( login );
