@@ -12,7 +12,7 @@ import model.Produto;
  */
 public class ProdutoDAO extends DAOImplementacao<Produto, Integer>{
 
-    public ProdutoDAO ( Produto entidade ) {
+    public ProdutoDAO () {
         super( new Produto() );
     }
     

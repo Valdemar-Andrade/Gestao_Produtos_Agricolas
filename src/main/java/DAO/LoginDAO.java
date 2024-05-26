@@ -12,10 +12,14 @@ import model.Login;
  */
 public class LoginDAO extends DAOImplementacao<Login, Integer>{
 
-    public LoginDAO ( Login entidade ) {
+    public LoginDAO () {
         super( new Login() );
     }
     
-    
+    public boolean autenticarLogin(String senha, String usuario){
+        
+        return true;
+        
+    }
     
 }
