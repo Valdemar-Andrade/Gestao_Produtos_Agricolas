@@ -27,9 +27,9 @@
             <br>
             <label for="senha">Senha</label>
             <input type="password" id="senha" name="senha" placeholder="Senha" required>
-            <br>
+            <br><br>
             <input type="submit" name="form-cadastro" value="Cadastrar">
-            <br>
+            <br><br>
             <a href="index.jsp">login</a>
         </form>
 

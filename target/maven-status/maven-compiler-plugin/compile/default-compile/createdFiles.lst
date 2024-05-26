@@ -1,4 +1,5 @@
 config/IGerenciadorConexaoDB.class
+Servlet/CadastroUsuario.class
 DAO/DAOImplementacao.class
 model/Usuario.class
 DAO/LoginDAO.class

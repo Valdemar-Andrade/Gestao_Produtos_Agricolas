@@ -13,7 +13,7 @@
         <title>Produtos Agricolas</title>
     </head>
     <body>
-        <h6>Usuario: <%= request.getParameter("usuario")%></h6>
+        <h6>Usuario: <% if(request.getParameter("usuario") != null) {%> <%= request.getParameter("usuario") %> <%}%></h6>
         <h1>Produtos Agricolas</h1>
         <br><br>
         <table>

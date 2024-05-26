@@ -16,19 +16,19 @@
         <div id="form-login">
             <h1>Login</h1>
             <h6>
-                <% if ( request.getParameter( "msg" ) != null )%> <%= request.getParameter( "msg") %>
+                <% if ( request.getParameter( "msg" ) != null ) {%> <%= request.getParameter( "msg" ) %> <%}%>
             </h6>
 
             <form method="POST" action="FazerLogin" onsubmit="return validarCampos()">
 
                 <label for="usuario">Usuario</label>
-                <input type="text" id="usuario" name="usuario" placeholder="Nome de Usuario">
+                <input type="text" id="usuario" name="usuario" placeholder="Nome de Usuario" required>
                 <br>
                 <label for="senha">Senha</label>
-                <input type="password" id="senha" name="senha" placeholder="Senha">
-                <br>
+                <input type="password" id="senha" name="senha" placeholder="Senha" required>
+                <br><br>
                 <input type="submit" name="form_login" value="Entrar">
-                <br>
+                <br><br>
                 <a href="cadastro.jsp">cadastrar</a>
 
             </form>
@@ -37,17 +37,19 @@
 
     <script>
 
-        var usuario = document.getElementById("usuario").value;
-        var senha = document.getElementById("senha").value;
+        function validarCampos() {
+            var usuario = document.getElementById("usuario").value;
+            var senha = document.getElementById("senha").value;
 
-        if (usuario.trim() === "" || senha.trim() === "") {
+            if (usuario.trim() === "" || senha.trim() === "") {
 
-            alert("Preencha os campos!");
-            return false;
-            
+                alert("Preencha os campos!");
+                return false;
+
+            }
+
+            return true;
         }
-
-        return true;
 
     </script>
 </html>
