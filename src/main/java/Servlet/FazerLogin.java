@@ -43,7 +43,7 @@ public class FazerLogin extends HttpServlet {
             }
             else {
 
-                String msg = "Usuario invalido";
+                String msg = "Usuario nao existe";
                 response.sendRedirect( "index.jsp?msg=" + msg );
 
             }

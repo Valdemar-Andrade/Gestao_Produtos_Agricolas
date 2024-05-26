@@ -13,6 +13,15 @@
         <title>Produtos Agricolas</title>
     </head>
     <body>
+        <h6>Usuario: <%= request.getParameter("usuario")%></h6>
         <h1>Produtos Agricolas</h1>
+        <br><br>
+        <table>
+            <tr>
+                <th>Descrição</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+            </tr>
+        </table>
     </body>
 </html>

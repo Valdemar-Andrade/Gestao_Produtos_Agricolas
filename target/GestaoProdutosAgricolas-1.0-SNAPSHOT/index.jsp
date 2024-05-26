@@ -15,6 +15,9 @@
     <body>
         <div id="form-login">
             <h1>Login</h1>
+            <h6>
+                <% if ( request.getParameter( "msg" ) != null )%> <%= request.getParameter( "msg") %>
+            </h6>
 
             <form method="POST" action="FazerLogin" onsubmit="return validarCampos()">
 
@@ -38,7 +41,7 @@
         var senha = document.getElementById("senha").value;
 
         if (usuario.trim() === "" || senha.trim() === "") {
-            
+
             alert("Preencha os campos!");
             return false;
             
