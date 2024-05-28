@@ -6,6 +6,7 @@
 /Users/valdemar/NetBeansProjects/GestaoProdutosAgricolas/src/main/java/DAO/ProdutoDAO.java
 /Users/valdemar/NetBeansProjects/GestaoProdutosAgricolas/src/main/java/model/Usuario.java
 /Users/valdemar/NetBeansProjects/GestaoProdutosAgricolas/src/main/java/Servlet/FazerLogin.java
+/Users/valdemar/NetBeansProjects/GestaoProdutosAgricolas/src/main/java/Servlet/CadastroProduto.java
 /Users/valdemar/NetBeansProjects/GestaoProdutosAgricolas/src/main/java/DAO/LoginDAO.java
 /Users/valdemar/NetBeansProjects/GestaoProdutosAgricolas/src/main/java/config/IGerenciadorConexaoDB.java
 /Users/valdemar/NetBeansProjects/GestaoProdutosAgricolas/src/main/java/assets/TradutorCase.java

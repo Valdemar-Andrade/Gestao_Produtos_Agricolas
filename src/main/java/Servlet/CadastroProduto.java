@@ -4,8 +4,7 @@
  */
 package Servlet;
 
-import DAO.LoginDAO;
-import DAO.UsuarioDAO;
+import DAO.ProdutoDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -14,15 +13,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Login;
-import model.Usuario;
+import model.Produto;
 
 /**
  *
  * @author valdemar
  */
-@WebServlet(name = "CadastroUsuario", urlPatterns = { "/CadastroUsuario" })
-public class CadastroUsuario extends HttpServlet {
+@WebServlet(name = "CadastroProduto", urlPatterns = { "/CadastroProduto" })
+public class CadastroProduto extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,50 +30,45 @@ public class CadastroUsuario extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     * @throws java.sql.SQLException
      */
     protected void processRequest ( HttpServletRequest request, HttpServletResponse response )
             throws ServletException, IOException {
 
-        if ( request.getServletPath().equals( "/CadastroUsuario" ) ) {
+        if ( request.getServletPath().equals( "/CadastroProduto" ) ) {
 
-            String usuario = request.getParameter( "usuario" );
             String nome = request.getParameter( "nome" );
-            String email = request.getParameter( "email" );
-            String senha = request.getParameter( "senha" );
+            String quantidade = request.getParameter( "quantidade" );
+            String preco = request.getParameter( "preco" );
 
-            UsuarioDAO usuarioDao = new UsuarioDAO();
-            LoginDAO loginDao = new LoginDAO();
-
-            List<Usuario> usuarios;
-            List<Login> logins;
-            
-            int pkUsuario = 1, pkLogin = 1;
+            List<Produto> produtos;
+            ProdutoDAO produtoDao = new ProdutoDAO();
+            int pk = 1;
 
             try {
-                
-                usuarios = usuarioDao.listar();
-                logins = loginDao.listar();
-                
-                if( usuarios.size() > 0 && logins.size() > 0){
-                    
-                    pkUsuario = usuarios.get( usuarios.size() - 1).getPkUsuario() + 1;
-                    pkLogin = logins.get( logins.size() - 1 ).getPkLogin() + 1;
-                    
+
+                int quantidadeInteiro = Integer.parseInt( quantidade );
+                double precoDouble = Double.parseDouble( preco );
+
+                produtos = produtoDao.listar();
+
+                if ( produtos.size() > 0 ) {
+
+                    pk = produtos.get( produtos.size() - 1 ).getPkProduto() + 1;
+
                 }
-                
-                Usuario novoUsuario = new Usuario( pkUsuario, nome, email );
-                usuarioDao.adicionar( novoUsuario );
-                
-                Login login = new Login( pkLogin, usuario, senha, pkUsuario );
-                loginDao.adicionar( login );
-                
-                response.sendRedirect( "index.jsp");
+
+                Produto produto = new Produto( pk, nome, quantidadeInteiro, precoDouble );
+
+                produtoDao.adicionar( produto );
+
+                response.sendRedirect( "home.jsp" );
 
             }
-            catch ( SQLException ex ) {
-                ex.printStackTrace();
+            catch ( NumberFormatException | SQLException ex ) {
+                System.out.println( "Erro ao converter valores do Produto!" );
             }
+
+            response.sendRedirect( "home.jsp" );
 
         }
 
