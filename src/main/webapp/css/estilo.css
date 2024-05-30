@@ -23,3 +23,7 @@ table, th, td {
 #tabela-produtos{
     width: 500px;
 }
+
+#form-cadastrar-produto input{
+    margin-left: 30px;
+}

@@ -24,7 +24,7 @@
         <h3>Usuario: <% if ( request.getParameter( "usuario" ) != null ) {%> <%= request.getParameter( "usuario" ) %> <%}%> <a href="index.jsp">sair</a></h3>
         <h1>Produtos Agricolas</h1>
 
-        <div>
+        <div id="form-cadastrar-produto">
             <form method="POST" action="GerirProduto" onsubmit="return validarCampos()">
 
                 <label for="nome">Nome</label>
@@ -36,6 +36,7 @@
                 <label for="preco">Preço</label>
                 <input type="number" id="preco" name="preco" placeholder="Preço Unidade" required> Kz
                 <br><br>
+                <input type="hidden" name="usuario" value="<%= request.getParameter( "usuario") %>">
                 <input type="submit" value="Cadastrar Produto" name="form-cadastro-produto">
 
             </form>
@@ -61,12 +62,14 @@
                 <td>
                     <form method="POST" action="GerirProduto">
                         <input type="hidden" name="pk" value="<%= produto.getPkProduto() %>">
-                        <input type="text" name="novo" placeholder="Nova descrição">
+                        <input type="text" name="novo" placeholder="Nova descrição" required>
+                        <input type="hidden" name="usuario" value="<%= request.getParameter( "usuario") %>">
                         <input type="submit" name="form-editar-produto" value="editar">
                     </form>
 
                     <form method="POST" action="GerirProduto">
                         <input type="hidden" name="pk" value="<%= produto.getPkProduto() %>">
+                        <input type="hidden" name="usuario" value="<%= request.getParameter( "usuario") %>">
                         <input type="submit" name="form-eliminar-produto" value="eliminar">
                     </form>
                 </td>
@@ -80,7 +83,13 @@
                 var qtd = document.getElementById("quantidade").value;
                 var preco = document.getElementById("preco").value;
 
-                if (nome.trim() === "" || qtd.trim() === "" || preco.trim() === "")
+                if (nome.trim() === "")
+                    return false;
+                
+                if(qtd.trim() === "")
+                    return false;
+                
+                if(preco.trim() === "")
                     return false;
 
                 return true;

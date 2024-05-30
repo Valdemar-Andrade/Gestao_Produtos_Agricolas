@@ -116,20 +116,26 @@ public class DAOImplementacao<T extends Object, K> extends AbstractDAO<T, K> {
         String impressao = "";
 
         try {
+            
+            T entidade = (T) this.entidade.getClass().getDeclaredConstructor().newInstance();
+            
             for ( int i = 0; i < camposEntidade.length; i++ ) {
-                Field field = this.entidade.getClass().getDeclaredField( camposEntidade[i] );
+                
+                Field field = entidade.getClass().getDeclaredField( camposEntidade[i] );
                 field.setAccessible( true );
-                field.set( this.entidade, field.getType().cast( resultado.getObject( camposTabela[i] ) ) );
+                
+                field.set( entidade, field.getType().cast( resultado.getObject( camposTabela[i] ) ) );
                 impressao += resultado.getString( camposTabela[i] ) + " - ";
+                
             }
+            
+            System.out.println( impressao );
+            return entidade;
         }
         catch ( Exception ex ) {
             throw new RuntimeException( ex );
         }
-
-        System.out.println( impressao );
-
-        return this.entidade;
+        
     }
 
     @Override

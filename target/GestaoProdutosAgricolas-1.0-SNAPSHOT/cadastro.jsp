@@ -40,10 +40,10 @@
 
         function validarCampos() {
 
-            var usuario = document.getElementById("usuario");
-            var nome = document.getElementById("nome");
-            var email = document.getElementById("email");
-            var senha = document.getElementById("senha");
+            var usuario = document.getElementById("usuario").value;
+            var nome = document.getElementById("nome").value;
+            var email = document.getElementById("email").value;
+            var senha = document.getElementById("senha").value;
 
             if (usuario.trim() === "" || nome.trim() === "" || email.trim() === "" || senha.trim() === "") {
 
