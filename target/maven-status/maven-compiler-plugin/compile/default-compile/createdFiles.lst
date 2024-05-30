@@ -1,5 +1,6 @@
 config/IGerenciadorConexaoDB.class
 Servlet/CadastroUsuario.class
+Servlet/GerirProduto.class
 DAO/DAOImplementacao.class
 model/Usuario.class
 DAO/LoginDAO.class
@@ -7,7 +8,6 @@ config/GerenciadorConexaoDB.class
 DAO/UsuarioDAO.class
 DAO/ProdutoDAO.class
 model/Login.class
-Servlet/CadastroProduto.class
 Servlet/FazerLogin.class
 DAO/AbstractDAO.class
 model/Produto.class

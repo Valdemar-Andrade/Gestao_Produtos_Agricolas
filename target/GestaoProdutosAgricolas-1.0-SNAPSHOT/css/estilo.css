@@ -16,7 +16,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     border-radius: 5px;
 }
 
+table, th, td {
+  border: 1px solid;
+}
+
 #tabela-produtos{
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    width: 500px;
 }
